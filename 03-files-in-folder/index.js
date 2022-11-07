@@ -6,14 +6,14 @@ const dir = path.join(__dirname, 'secret-folder')
 fs.readdir(dir, {withFileTypes: true}, (error, files) => {
   if (error) return console.error(error.message)
   files.forEach((file) => {
-    let filePath = dir + '\\' + file.name.toString()
-    let filename = path.basename(file.name.toString(), path.extname(file.name.toString()))
-    let extname = path.extname(filePath)
+    let filePath = path.join(dir, file.name.toString())
+    let fileName = path.basename(filePath, path.extname(filePath))
+    let extName = path.extname(filePath)
     if (file.isFile()) {
       fs.stat(filePath, (error, stats) => {
         if (error) return console.error(error.message)
-        let filesize = (stats.size / 1024).toFixed(3)
-        console.log(`${filename} - ${extname} - ${filesize}kb`)
+        let fileSize = (stats.size / 1024).toFixed(3)
+        console.log(`${fileName} - ${extName} - ${fileSize}kb`)
       })
     }
   })

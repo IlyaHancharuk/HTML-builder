@@ -25,8 +25,8 @@ function copyDir(dir, dirCopy) {
     if (error) return console.error(error.message)
     files.forEach((file) => {
       if ((!file.isDirectory())) {
-        let copiedFile = dir + '\\' + file.name.toString()
-        let newFile = dirCopy + '\\' + file.name.toString()
+        let copiedFile = path.join(dir, file.name.toString())
+        let newFile = path.join(dirCopy, file.name.toString())
         fs.copyFile(copiedFile, newFile, error => {
           if (error) return console.error(error.message)
         })
